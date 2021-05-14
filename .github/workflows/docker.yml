@@ -29,10 +29,10 @@ jobs:
           docker build ./adminer -t adminka
       - name: docker build db
         run: |
-          docker build -t ./db testdb
+          docker build ./db -t testdb
       - name: docker build backand
         run: |
-          docker build -t ./WebApp backand
+          docker build ./WebApp -t backand
       - name: docker build frontend
         run: |
           docker build ./hello-world-vue -t frontend
