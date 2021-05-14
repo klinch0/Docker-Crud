@@ -36,3 +36,7 @@ jobs:
       - name: docker build frontend
         run: |
           docker build ./hello-world-vue -t frontend
+      - name: copy by ssh
+        run: |
+          docker save adminka | bzip2 | pv | \
+          sshpass -p '{{ secrets.SSH_PASSWORD }}' ssh {{ SSH_USER }}@{{ SSH_IP }} 'bunzip2 | docker load'
