@@ -46,5 +46,4 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           host: ${{ secrets.SSH_IP }}
         run: |
-          docker save -o /home/adminka.tar adminka
-          rsync ~/home/adminka.tar sshpass -p $pass $user@$host:~/root/test
+          docker save adminka | sshpass -p $pass ssh $user@$host docker load
