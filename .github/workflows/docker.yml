@@ -50,4 +50,4 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$key" > ~/.ssh/id_rsa
           sudo chmod 600 ~/.ssh/id_rsa
-          docker save adminka | ssh $user@$host docker load
+          docker save adminka | ssh -o StrictHostKeyChecking=no $user@$host docker load
