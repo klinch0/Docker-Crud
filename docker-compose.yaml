@@ -3,22 +3,26 @@ version: '3.1'
 services:
 
   db:
+    image: testdb
     build: ./db
     restart: always
     environment:
       POSTGRES_PASSWORD: somePassword
 
   adminer:
+    image: adminka
     build: ./adminer
     restart: always
     ports:
       - 8080:8080
   backand:
+    image: backand
     build: ./WebApp
     restart: always
     ports: 
       - 8061:80
   frontend:
+    image: frontend
     build: ./hello-world-vue
     restart: always
     ports: 
