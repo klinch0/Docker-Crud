@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  db:
+    build: ./db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: somePassword
+
+  adminer:
+    build: ./adminer
+    restart: always
+    ports:
+      - 8080:8080
+  backand:
+    build: ./WebApp
+    restart: always
+    ports: 
+      - 8061:80
+  frontend:
+    build: ./hello-world-vue
+    restart: always
+    ports: 
+      - 8062:80
