@@ -51,3 +51,8 @@ jobs:
           echo "$key" > ~/.ssh/id_rsa
           sudo chmod 600 ~/.ssh/id_rsa
           docker save adminka | ssh -o StrictHostKeyChecking=no $user@$host docker load
+          docker save testdb | ssh -o StrictHostKeyChecking=no $user@$host docker load
+          docker save backand | ssh -o StrictHostKeyChecking=no $user@$host docker load
+          docker save frontend | ssh -o StrictHostKeyChecking=no $user@$host docker load
+          scp ./docker-compose.yaml root@$host:/root
+          ssh -o StrictHostKeyChecking=no $user@$host docker-compose up -d
