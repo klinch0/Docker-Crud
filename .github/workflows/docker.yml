@@ -39,11 +39,12 @@ jobs:
       - name: install pv
         run: |
           sudo apt-get install pv
+          sudo apt-get install rsync
       - name: copy via ssh
         env:
           pass: ${{ secrets.SSH_PASSWORD }}
           user: ${{ secrets.SSH_USER }}
           host: ${{ secrets.SSH_IP }}
         run: |
-          docker save adminka | bzip2 | pv | \
-          sshpass -p $pass ssh $user@$host 'bunzip2 | docker load'
+          docker save -o /home/adminka.tar adminka
+          rsync ~/home/adminka.tar sshpass -p $pass $user@$host:~/root/test
