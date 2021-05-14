@@ -36,7 +36,10 @@ jobs:
       - name: docker build frontend
         run: |
           docker build ./hello-world-vue -t frontend
-      - name: copy by ssh
+      - name: install pv
+        run: |
+          sudo apt-get install pv
+      - name: copy via ssh
         env:
           pass: ${{ secrets.SSH_PASSWORD }}
           user: ${{ secrets.SSH_USER }}
