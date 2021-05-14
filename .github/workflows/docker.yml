@@ -42,8 +42,12 @@ jobs:
           sudo apt-get install rsync
       - name: copy via ssh
         env:
+          key: ${{ secrets.SSH_KEY }}
           pass: ${{ secrets.SSH_PASSWORD }}
           user: ${{ secrets.SSH_USER }}
           host: ${{ secrets.SSH_IP }}
         run: |
-          docker save adminka | sshpass -p $pass ssh $user@$host docker load
+          mkdir -p ~/.ssh/
+          echo "$key" > ~/.ssh/id_rsa
+          sudo chmod 600 ~/.ssh/id_rsa
+          docker save adminka | ssh $user@$host docker load
