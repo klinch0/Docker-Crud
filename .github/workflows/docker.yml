@@ -30,9 +30,9 @@ jobs:
       - name: docker build db
         run: |
           docker build ./db testdb
-      - name: docker build backand
+      - name: docker build -t backand
         run: |
           docker build ./WebApp backand
-      - name: docker build frontend
+      - name: docker build -t frontend
         run: |
-          docker build ./hello-world-vue frontend
+          docker build ./hello-world-vue -t frontend
