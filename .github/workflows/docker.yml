@@ -39,8 +39,8 @@ jobs:
       - name: copy by ssh
         env:
           pass: ${{ secrets.SSH_PASSWORD }}
-          user: ${{ SSH_USER }}
-          host: ${{ SSH_IP }}
+          user: ${{ secrets.SSH_USER }}
+          host: ${{ secrets.SSH_IP }}
         run: |
           docker save adminka | bzip2 | pv | \
           sshpass -p $pass ssh $user@$host 'bunzip2 | docker load'
