@@ -22,17 +22,9 @@ namespace WebApp.Controllers
 
         // GET: Texts
         [HttpGet]
-        public async Task<List<Text>> GetTexts()
+        public string GetTexts()
         {
-            var res = await _context.Texts.ToListAsync();
-            return res;
-        }
-
-        // GET: Texts/create/
-        [HttpGet("create")]
-        public async Task<string> CreateText(string text)
-        {
-            return DateTime.Now().ToString();
+            return DateTime.Now.ToString();
         }
 
     }
