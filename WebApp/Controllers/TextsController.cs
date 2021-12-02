@@ -29,11 +29,10 @@ namespace WebApp.Controllers
         }
 
         // GET: Texts/create/
-        [HttpGet("create/{text}")]
-        public async Task CreateText(string text)
+        [HttpGet("create")]
+        public async Task<string> CreateText(string text)
         {
-            await _context.Texts.AddAsync(new Text() { Value = text });
-            await _context.SaveChangesAsync();
+            return DateTime.Now().ToString();
         }
 
     }
